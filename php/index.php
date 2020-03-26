@@ -19,9 +19,11 @@ if ($db->connect_error) {
     die('Connect Error (' . $db->connect_errno . ') '. $db->connect_error);
 }
 
+// repository
+$userRepository = new UserRepository($db);
+
 // service
 $hashService = new HashService();
-$userRepository = new UserRepository($db);
 $loginService = new LoginService($userRepository, $hashService);
 $registerService = new RegisterService($userRepository, $hashService);
 
